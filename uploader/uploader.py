@@ -45,6 +45,11 @@ class Params:
                 raise RuntimeError('Won\'t let you run without a trailing slash on '
                                'rsync directory')
 
+        self.rsync_ssh = os.environ.get('RSYNC_SSH')
+        if self.rsync_ssh not in ('disable', 'enable') or self.rsync_ssh is None:
+            raise RuntimeError('RSYNC_SSH is either not set or set to an undefined '
+                               'value. Please use only (enable or disable).')
+
             self.mode = 'rsync'
 
         if self.url is None:
@@ -233,7 +238,12 @@ def main():
                 item = parse_name(basename)
 
                 if params.mode == 'rsync':
-                    exit_code = subprocess.call([
+                    if params.rsync_ssh == 'enable':
+                        exit_code = subprocess.call([
+                        "rsync", "-tv", "--rsh=ssh", "--timeout=300",
+                        "--progress", fname_u, params.url])
+                    elif params.rsync_ssh == 'disable':
+                        exit_code = subprocess.call([
                         "rsync", "-tv", "--timeout=300", "--contimeout=300",
                         "--progress", fname_u, params.url])
                 elif params.mode == 's3':
