@@ -1,70 +1,25 @@
-1. ArchiveBot
+1. What is this?
+This is a customized version of the Archive team's ArchiveBot, which I play with,
+to make it fit the occlub Archive (Retro Portal) project's needs...
 
-    <SketchCow> Coders, I have a question.
-    <SketchCow> Or, a request, etc.
-    <SketchCow> I spent some time with xmc discussing something we could
-                do to make things easier around here.
-    <SketchCow> What we came up with is a trigger for a bot, which can
-                be triggered by people with ops.
-    <SketchCow> You tell it a website. It crawls it. WARC. Uploads it to
-                archive.org. Boom.
-    <SketchCow> I can supply machine as needed.
-    <SketchCow> Obviously there's some sanitation issues, and it is root
-                all the way down or nothing.
-    <SketchCow> I think that would help a lot for smaller sites
-    <SketchCow> Sites where it's 100 pages or 1000 pages even, pretty
-                simple.
-    <SketchCow> And just being able to go "bot, get a sanity dump"
+2. Running/Using it
 
-2. More info
+ArchiveBot contains two major components: the control node (aka Backend), which
+runs the IRC interface and bookkeeping programs, and the crawlers (aka Pipeline),
+which do all the Web crawling. ArchiveBot users communicate with it by issuing 
+commands in an IRC channel.
 
-ArchiveBot has two major backend components: the control node, which
-runs the IRC interface and bookkeeping programs, and the crawlers, which
-do all the Web crawling.  ArchiveBot users communicate with ArchiveBot
-by issuing commands in an IRC channel.
+See (INSTALL.backend) to install the control node (Backend). And for installing
+the crawler (Pipeline), see (INSTALL.pipeline). Also, don't forget that you can't 
+run the backend without having at least one crawler (Pipeline) installed and set 
+up to connect to it.
 
-User's guide: http://archivebot.readthedocs.org/en/latest/
-Control node installation guide: INSTALL.backend
-Crawler installation guide: INSTALL.pipeline
+3. License
 
-3. Local use
-
-ArchiveBot was originally written as a set of separate programs for
-deployment on a server.  This means it has a poor distribution story.
-However, Ivan Kozik (@ivan) has taken the ArchiveBot pipeline,
-dashboard, ignores, and control system and created a package intended for
-personal use.  You can find it at https://github.com/ArchiveTeam/grab-site.
-
-4. License
-
-Copyright 2013 David Yip; made available under the MIT license.  See
+Copyright 2013 David Yip; made available under the MIT license. See
 LICENSE for details.
 
-5. Acknowledgments
+4. Special thanks
 
-Thanks to Alard (@alard), who added WARC generation and Lua scripting to
-GNU Wget.  Wget+lua was the first web crawler used by ArchiveBot.
-
-Thanks to Christopher Foo (@chfoo) for wpull, ArchiveBot's current web
-crawler.
-
-Thanks to Ivan Kozik (@ivan) for maintaining ignore patterns and
-tracking down performance problems at scale.
-
-Other thanks go to the following projects:
-
-* Celluloid <http://celluloid.io/>
-* Cinch <https://github.com/cinchrb/cinch/>
-* CouchDB <http://couchdb.apache.org/>
-* Ember.js <http://emberjs.com/>
-* Redis <http://redis.io/>
-* Seesaw <https://github.com/ArchiveTeam/seesaw-kit>
-
-6. Special thanks
-
-Dragonette, Barnaby Bright, Vienna Teng, NONONO.
-
-The memory hole of the Web has gone too far.
-Don't look down, never look away; ArchiveBot's like the wind.
-
- vim:ts=2:sw=2:tw=72:et
+Thanks to ArchiveTeam for creating this wonderful thing and to everyone who helped
+me (on #archiveteam-bs) understand how it works and resolve the issues I faced.
