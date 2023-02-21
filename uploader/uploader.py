@@ -45,12 +45,12 @@ class Params:
                 raise RuntimeError('Won\'t let you run without a trailing slash on '
                                'rsync directory')
 
+            self.mode = 'rsync'
+
         self.rsync_ssh = os.environ.get('RSYNC_SSH')
         if self.rsync_ssh not in ('disable', 'enable') or self.rsync_ssh is None:
             raise RuntimeError('RSYNC_SSH is either not set or set to an undefined '
                                'value. Please use only (enable or disable).')
-
-            self.mode = 'rsync'
 
         if self.url is None:
             self.url = os.environ.get('S3_URL')
